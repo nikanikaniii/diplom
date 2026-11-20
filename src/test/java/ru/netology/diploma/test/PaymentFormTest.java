@@ -55,21 +55,21 @@ class PaymentFormTest {
     @Test
     @DisplayName("TC-3 Номер карты: пустое поле")
     void shouldRejectEmptyCardNumber() {
-        paymentPage.fill(DataHelper.withNumber(DataHelper.getApprovedCard(), ""));
+        paymentPage.fill(DataHelper.withNumber(DataHelper.getApprovedCard(), DataHelper.getEmptyValue()));
         paymentPage.shouldShowFieldError("Номер карты", "Неверный формат");
     }
 
     @Test
     @DisplayName("TC-4 Номер карты: 1 цифра")
     void shouldRejectOneDigitCardNumber() {
-        paymentPage.fill(DataHelper.withNumber(DataHelper.getApprovedCard(), "1"));
+        paymentPage.fill(DataHelper.withNumber(DataHelper.getApprovedCard(), DataHelper.getOneDigitCardNumber()));
         paymentPage.shouldShowFieldError("Номер карты", "Неверный формат");
     }
 
     @Test
     @DisplayName("TC-5 Номер карты: 15 цифр")
     void shouldRejectFifteenDigitCardNumber() {
-        paymentPage.fill(DataHelper.withNumber(DataHelper.getApprovedCard(), "1111 2222 3333 444"));
+        paymentPage.fill(DataHelper.withNumber(DataHelper.getApprovedCard(), DataHelper.getFifteenDigitCardNumber()));
         paymentPage.shouldShowFieldError("Номер карты", "Неверный формат");
     }
 
@@ -77,21 +77,21 @@ class PaymentFormTest {
     @DisplayName("TC-6 Месяц: 00")
     @Link(name = "Баг: месяц 00 принимается", url = "https://github.com/nikanikaniii/diplom/issues/4")
     void shouldRejectZeroMonth() {
-        paymentPage.fill(DataHelper.withMonth(DataHelper.getApprovedCard(), "00"));
+        paymentPage.fill(DataHelper.withMonth(DataHelper.getApprovedCard(), DataHelper.getZeroMonth()));
         paymentPage.shouldShowFieldError("Месяц", "Неверно указан срок действия карты");
     }
 
     @Test
     @DisplayName("TC-7 Месяц: 13")
     void shouldRejectThirteenthMonth() {
-        paymentPage.fill(DataHelper.withMonth(DataHelper.getApprovedCard(), "13"));
+        paymentPage.fill(DataHelper.withMonth(DataHelper.getApprovedCard(), DataHelper.getThirteenthMonth()));
         paymentPage.shouldShowFieldError("Месяц", "Неверно указан срок действия карты");
     }
 
     @Test
     @DisplayName("TC-8 Месяц: пустое поле")
     void shouldRejectEmptyMonth() {
-        paymentPage.fill(DataHelper.withMonth(DataHelper.getApprovedCard(), ""));
+        paymentPage.fill(DataHelper.withMonth(DataHelper.getApprovedCard(), DataHelper.getEmptyValue()));
         paymentPage.shouldShowFieldError("Месяц", "Неверный формат");
     }
 
@@ -105,7 +105,7 @@ class PaymentFormTest {
     @Test
     @DisplayName("TC-10 Год: пустое поле")
     void shouldRejectEmptyYear() {
-        paymentPage.fill(DataHelper.withYear(DataHelper.getApprovedCard(), ""));
+        paymentPage.fill(DataHelper.withYear(DataHelper.getApprovedCard(), DataHelper.getEmptyValue()));
         paymentPage.shouldShowFieldError("Год", "Неверный формат");
     }
 
@@ -113,7 +113,7 @@ class PaymentFormTest {
     @DisplayName("TC-11 Владелец: спецсимволы")
     @Link(name = "Баг: владелец принимает спецсимволы", url = "https://github.com/nikanikaniii/diplom/issues/2")
     void shouldRejectSpecialSymbolsInHolder() {
-        paymentPage.fill(DataHelper.withHolder(DataHelper.getApprovedCard(), "@@@"));
+        paymentPage.fill(DataHelper.withHolder(DataHelper.getApprovedCard(), DataHelper.getSpecialSymbolsHolder()));
         paymentPage.shouldShowFieldError("Владелец", "Неверный формат");
     }
 
@@ -121,28 +121,28 @@ class PaymentFormTest {
     @DisplayName("TC-12 Владелец: цифры")
     @Link(name = "Баг: владелец принимает цифры", url = "https://github.com/nikanikaniii/diplom/issues/3")
     void shouldRejectDigitsInHolder() {
-        paymentPage.fill(DataHelper.withHolder(DataHelper.getApprovedCard(), "12345"));
+        paymentPage.fill(DataHelper.withHolder(DataHelper.getApprovedCard(), DataHelper.getDigitsHolder()));
         paymentPage.shouldShowFieldError("Владелец", "Неверный формат");
     }
 
     @Test
     @DisplayName("TC-13 Владелец: пустое поле")
     void shouldRejectEmptyHolder() {
-        paymentPage.fill(DataHelper.withHolder(DataHelper.getApprovedCard(), ""));
+        paymentPage.fill(DataHelper.withHolder(DataHelper.getApprovedCard(), DataHelper.getEmptyValue()));
         paymentPage.shouldShowFieldError("Владелец", "Поле обязательно для заполнения");
     }
 
     @Test
     @DisplayName("TC-14 CVC: две цифры")
     void shouldRejectShortCvc() {
-        paymentPage.fill(DataHelper.withCvc(DataHelper.getApprovedCard(), "12"));
+        paymentPage.fill(DataHelper.withCvc(DataHelper.getApprovedCard(), DataHelper.getShortCvc()));
         paymentPage.shouldShowFieldError("CVC/CVV", "Неверный формат");
     }
 
     @Test
     @DisplayName("TC-15 CVC: пустое поле")
     void shouldRejectEmptyCvc() {
-        paymentPage.fill(DataHelper.withCvc(DataHelper.getApprovedCard(), ""));
+        paymentPage.fill(DataHelper.withCvc(DataHelper.getApprovedCard(), DataHelper.getEmptyValue()));
         paymentPage.shouldShowFieldError("CVC/CVV", "Неверный формат");
     }
 }

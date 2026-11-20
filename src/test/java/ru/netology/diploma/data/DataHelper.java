@@ -20,11 +20,11 @@ public class DataHelper {
     }
 
     public static CardInfo getApprovedCard() {
-        return new CardInfo("1111 2222 3333 4444", getCurrentMonth(), getCurrentYear(), faker.name().fullName(), "123");
+        return new CardInfo("1111 2222 3333 4444", getCurrentMonth(), getCurrentYear(), faker.name().fullName(), getValidCvc());
     }
 
     public static CardInfo getDeclinedCard() {
-        return new CardInfo("5555 6666 7777 8888", getCurrentMonth(), getCurrentYear(), faker.name().fullName(), "123");
+        return new CardInfo("5555 6666 7777 8888", getCurrentMonth(), getCurrentYear(), faker.name().fullName(), getValidCvc());
     }
 
     public static CardInfo withNumber(CardInfo card, String number) {
@@ -57,5 +57,41 @@ public class DataHelper {
 
     public static String pastYear() {
         return LocalDate.now().minusYears(2).format(DateTimeFormatter.ofPattern("yy"));
+    }
+
+    public static String getEmptyValue() {
+        return "";
+    }
+
+    public static String getZeroMonth() {
+        return "00";
+    }
+
+    public static String getThirteenthMonth() {
+        return "13";
+    }
+
+    public static String getOneDigitCardNumber() {
+        return faker.numerify("#");
+    }
+
+    public static String getFifteenDigitCardNumber() {
+        return faker.numerify("#### #### #### ###");
+    }
+
+    public static String getSpecialSymbolsHolder() {
+        return faker.options().option("@", "#", "$", "%", "&", "*").repeat(3);
+    }
+
+    public static String getDigitsHolder() {
+        return faker.numerify("#####");
+    }
+
+    public static String getShortCvc() {
+        return faker.numerify("##");
+    }
+
+    public static String getValidCvc() {
+        return faker.numerify("###");
     }
 }
