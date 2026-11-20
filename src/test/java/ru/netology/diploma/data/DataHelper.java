@@ -17,26 +17,6 @@ public class DataHelper {
         String year;
         String holder;
         String cvc;
-
-        public CardInfo withNumber(String number) {
-            return new CardInfo(number, month, year, holder, cvc);
-        }
-
-        public CardInfo withMonth(String month) {
-            return new CardInfo(number, month, year, holder, cvc);
-        }
-
-        public CardInfo withYear(String year) {
-            return new CardInfo(number, month, year, holder, cvc);
-        }
-
-        public CardInfo withHolder(String holder) {
-            return new CardInfo(number, month, year, holder, cvc);
-        }
-
-        public CardInfo withCvc(String cvc) {
-            return new CardInfo(number, month, year, holder, cvc);
-        }
     }
 
     public static CardInfo getApprovedCard() {
@@ -45,6 +25,26 @@ public class DataHelper {
 
     public static CardInfo getDeclinedCard() {
         return new CardInfo("5555 6666 7777 8888", getCurrentMonth(), getCurrentYear(), faker.name().fullName(), "123");
+    }
+
+    public static CardInfo withNumber(CardInfo card, String number) {
+        return new CardInfo(number, card.getMonth(), card.getYear(), card.getHolder(), card.getCvc());
+    }
+
+    public static CardInfo withMonth(CardInfo card, String month) {
+        return new CardInfo(card.getNumber(), month, card.getYear(), card.getHolder(), card.getCvc());
+    }
+
+    public static CardInfo withYear(CardInfo card, String year) {
+        return new CardInfo(card.getNumber(), card.getMonth(), year, card.getHolder(), card.getCvc());
+    }
+
+    public static CardInfo withHolder(CardInfo card, String holder) {
+        return new CardInfo(card.getNumber(), card.getMonth(), card.getYear(), holder, card.getCvc());
+    }
+
+    public static CardInfo withCvc(CardInfo card, String cvc) {
+        return new CardInfo(card.getNumber(), card.getMonth(), card.getYear(), card.getHolder(), cvc);
     }
 
     public static String getCurrentMonth() {

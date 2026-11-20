@@ -38,12 +38,12 @@ public class PaymentPage {
         continueButton.click();
     }
 
-    public void shouldShowSuccess() {
-        successNotification.shouldBe(visible, Duration.ofSeconds(15));
+    public void shouldShowSuccess(String expectedText) {
+        successNotification.shouldBe(visible, Duration.ofSeconds(15)).shouldHave(text(expectedText));
     }
 
-    public void shouldShowBankRefusal() {
-        errorNotification.shouldBe(visible, Duration.ofSeconds(15));
+    public void shouldShowBankRefusal(String expectedText) {
+        errorNotification.shouldBe(visible, Duration.ofSeconds(15)).shouldHave(text(expectedText));
     }
 
     public void shouldShowFieldError(String fieldName, String expectedErrorText) {
