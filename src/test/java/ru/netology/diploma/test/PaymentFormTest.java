@@ -45,7 +45,7 @@ class PaymentFormTest {
 
     @Test
     @DisplayName("TC-2 Покупка Declined-картой")
-    @Link(name = "Баг: DECLINED-карта не отклоняется", url = "ISSUE_LINK_1")
+    @Link(name = "Баг: DECLINED-карта не отклоняется", url = "https://github.com/nikanikaniii/diplom/issues/1")
     void shouldDeclineWithDeclinedCard() {
         paymentPage.fill(DataHelper.getDeclinedCard());
         paymentPage.shouldShowBankRefusal("Ошибка! Банк отказал в проведении операции.");
@@ -75,7 +75,7 @@ class PaymentFormTest {
 
     @Test
     @DisplayName("TC-6 Месяц: 00")
-    @Link(name = "Баг: месяц 00 принимается", url = "ISSUE_LINK_2")
+    @Link(name = "Баг: месяц 00 принимается", url = "https://github.com/nikanikaniii/diplom/issues/4")
     void shouldRejectZeroMonth() {
         paymentPage.fill(DataHelper.withMonth(DataHelper.getApprovedCard(), "00"));
         paymentPage.shouldShowFieldError("Месяц", "Неверно указан срок действия карты");
@@ -111,7 +111,7 @@ class PaymentFormTest {
 
     @Test
     @DisplayName("TC-11 Владелец: спецсимволы")
-    @Link(name = "Баг: владелец принимает спецсимволы", url = "ISSUE_LINK_3")
+    @Link(name = "Баг: владелец принимает спецсимволы", url = "https://github.com/nikanikaniii/diplom/issues/2")
     void shouldRejectSpecialSymbolsInHolder() {
         paymentPage.fill(DataHelper.withHolder(DataHelper.getApprovedCard(), "@@@"));
         paymentPage.shouldShowFieldError("Владелец", "Неверный формат");
@@ -119,7 +119,7 @@ class PaymentFormTest {
 
     @Test
     @DisplayName("TC-12 Владелец: цифры")
-    @Link(name = "Баг: владелец принимает цифры", url = "ISSUE_LINK_4")
+    @Link(name = "Баг: владелец принимает цифры", url = "https://github.com/nikanikaniii/diplom/issues/3")
     void shouldRejectDigitsInHolder() {
         paymentPage.fill(DataHelper.withHolder(DataHelper.getApprovedCard(), "12345"));
         paymentPage.shouldShowFieldError("Владелец", "Неверный формат");
